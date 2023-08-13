@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.icia.board.dao.BoardDao">
+	<select id="getBoardList" parameterType="Integer" resultType="BoardDto">
+		<![CDATA[
+		SELECT * FROM BLIST WHERE rn>=#{pageNum}*10-9 and rn<=#{pageNum}*10
+		]]>
+	</select>
+	
+	<select id="getBoardCount" resultType="Integer">
+		SELECT COUNT(*) FROM B
+	</select>
+	
+	<insert id="insertBoard">
+        INSERT INTO BOARD (B_NUM, B_TITLE, B_CONTENTS, B_ID)
+        VALUES (BOARD_SEQ.NEXTVAL, #{b_title}, #{b_contents}, #{b_id})
+    </insert>
+</mapper>
